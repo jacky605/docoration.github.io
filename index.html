@@ -1,0 +1,152 @@
+<!DOCTYPE html>
+<html lang="zh-CN">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>美麗屋裝修工程公司</title>
+    <link rel="icon" href="company_icon.ico" type="image/x-icon">
+    <link rel="stylesheet" href="styles.css">
+</head>
+<body>
+    <header>
+        <div class="container">
+            <h1 class="logo"><img src="company_icon.ico" alt="Logo" class="logo-icon">美麗屋裝修工程公司</h1>
+            <nav>
+                <ul>
+                    <li><a href="#home">首頁</a></li>
+                    <li><a href="#services">服務</a></li>
+                    <li><a href="#portfolio">作品</a></li>
+                    <li><a href="#about">關於</a></li>
+                    <li><a href="#contact">聯繫</a></li>
+                </ul>
+            </nav>
+        </div>
+    </header>
+
+    <section id="home" class="hero">
+        <div class="container">
+            <h2>打造您的夢想空間</h2>
+            <p>專業室內設計與裝修服務</p>
+            <a href="#contact" class="btn">立即諮詢</a>
+        </div>
+    </section>
+
+    <section id="services" class="services">
+        <div class="container">
+            <h2>我們的服務</h2>
+            <div class="service-grid">
+                <div class="service-item">
+                    <h3>室內設計</h3>
+                    <p>專業的室內設計方案，滿足您的個人化需求</p>
+                </div>
+                <div class="service-item">
+                    <h3>裝修施工</h3>
+                    <p>高質量的裝修施工服務，確保工程質量</p>
+                </div>
+                <div class="service-item">
+                    <h3>傢俬搭配</h3>
+                    <p>精心挑選的傢俬配飾，提升空間美感</p>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <section id="portfolio" class="portfolio">
+        <div class="container">
+            <h2>作品展示</h2>
+            <div class="portfolio-grid">
+                <div class="portfolio-item">
+                    <img src="parlor.jpg" alt="客廳設計">
+                    <h3>現代簡約客廳</h3>
+                </div>
+                <div class="portfolio-item">
+                    <img src="living_room.jpg" alt="臥室設計">
+                    <h3>溫馨臥室設計</h3>
+                </div>
+                <div class="portfolio-item">
+                    <img src="kitchen.jpg" alt="廚房設計">
+                    <h3>現代簡約廚房</h3>
+                </div>
+                <div class="portfolio-item">
+                    <img src="toilet.jpg" alt="廁所設計">
+                    <h3>現代簡約廁所</h3>
+                </div>
+                <div class="portfolio-item">
+                    <img src="Furniture.jpg" alt="傢俬訂製">
+                    <h3>現代傢俬客製化訂製</h3>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <section id="about" class="about">
+        <div class="container">
+            <h2>關於我們</h2>
+            <p>我們是一家專業的裝修工程公司，擁有多年的行業經驗和專業的設計團隊。我們提供免費報價，承接各種大小的裝修工程。我們的服務包括水喉工程、電燈安裝、木器製作、油漆、燒焊及泥水工程等。我們將以專業的技術和用心的服務，協助您改造您的空間。致力於為客戶打造舒適、美觀的居住和工作空間。</p>
+        </div>
+    </section>
+
+    <section id="contact" class="contact">
+        <div class="container">
+            <h2>聯繫我們</h2>
+            <div class="contact-info">
+                <p class="phone-number">電話及 WhatsApp: <strong>96305285</strong></p>
+            </div>
+            <form id="contact-form">
+                <input type="text" name="user_name" placeholder="您的姓名" required>
+                <input type="email" name="user_email" placeholder="您的郵箱" required>
+                <textarea name="message" placeholder="您的需求" rows="5" required></textarea>
+                <button type="submit" class="btn">提交</button>
+            </form>
+        </div>
+    </section>
+
+    <footer>
+        <div class="container">
+            <p>&copy; 2025 裝修公司. 保留所有權利.</p>
+        </div>
+    </footer>
+
+    <script src="script.js"></script>
+    <!-- Font Awesome for WhatsApp Icon -->
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0/css/all.min.css">
+    <!-- EmailJS SDK -->
+    <script type="text/javascript" src="https://cdn.jsdelivr.net/npm/@emailjs/browser@3/dist/email.min.js"></script>
+    <script type="text/javascript">
+        (function(){
+            // 初始化 EmailJS with your public key
+            emailjs.init("iBQ6gHeBTmcGWW2nQ");
+        })();
+        
+        // 處理表單提交
+        document.getElementById('contact-form').addEventListener('submit', function(event) {
+            event.preventDefault();
+            
+            // 顯示提交狀態
+            const submitButton = this.querySelector('.btn');
+            const originalText = submitButton.textContent;
+            submitButton.textContent = '發送中...';
+            submitButton.disabled = true;
+            
+            // 發送郵件
+            emailjs.sendForm('service_vynh2db', 'template_28m4jcz', this)
+                .then(function() {
+                    alert('感謝您的留言！我們會盡快與您聯繫。');
+                    submitButton.textContent = originalText;
+                    submitButton.disabled = false;
+                    document.getElementById('contact-form').reset();
+                }, function(error) {
+                    alert('抱歉，發送失敗。請稍後再試。');
+                    console.log('FAILED...', error);
+                    submitButton.textContent = originalText;
+                    submitButton.disabled = false;
+                });
+        });
+    </script>
+    
+    <!-- Floating WhatsApp Button -->
+    <a href="https://wa.me/85296305285" target="_blank" class="whatsapp-float">
+        <i class="fab fa-whatsapp"></i>
+    </a>
+</body>
+</html>
